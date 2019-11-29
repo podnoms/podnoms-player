@@ -1,0 +1,46 @@
+<div class="pnp-grid-container"
+    [style.backgroundColor]="backgroundColour"
+    [style.padding]="padding">
+    <div class="pnp-thumb-link-wrapper pnp-image-container"
+        *ngIf="showImage"
+        [style.backgroundImage]="'url('+ imageUrl +')'">
+        <a target="_blank"
+            href=""></a>
+    </div>
+    <div class="pnp-controls-container"
+        (click)="play()">
+        <ngx-pnp-play-button [playState]="playState">
+        </ngx-pnp-play-button>
+    </div>
+    <div class="pnp-details-container"
+        *ngIf="showDetails">
+        <div class="details-wrapper">
+            <span class="details-wrapper-title tooltip truncate"
+                [title]="title"
+                [style.color]="titleColour">{{title}}
+            </span>
+            <span class="details-wrapper-subtitle"
+                [title]="subTitle"
+                [style.color]="subTitleColour">
+                {{subTitle}}
+            </span>
+        </div>
+    </div>
+
+    <div class="pnp-scrub-container">
+        <div class="pnp-scrub-inner-container"
+            #player></div>
+        <div pnp-audio-duration-position
+            class="pnp-audio-duration current"
+            [value]="currentPosition"></div>
+        <div pnp-audio-duration-position
+            class="pnp-audio-duration total"
+            [value]="duration"></div>
+    </div>
+
+    <div class="pnp-volume-container">
+        <ngx-pnp-volume-slider [currentVolume]="currentVolume"
+            (volumeChanged)="onVolumeChanged($event)">
+        </ngx-pnp-volume-slider>
+    </div>
+</div>
