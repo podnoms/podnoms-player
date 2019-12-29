@@ -54,6 +54,7 @@ export class NgxAudioplayerComponent implements AfterViewInit {
     @Input() reflectScale: number = 0.32;
     @Input() showImage: boolean = true;
     @Input() showDetails: boolean = true;
+    @Input() showVolume: boolean = true;
 
     @Output() audioStart: EventEmitter<any> = new EventEmitter<any>();
     @Output() connected: EventEmitter<any> = new EventEmitter<any>();

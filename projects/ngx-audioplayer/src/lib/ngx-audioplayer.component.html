@@ -38,7 +38,8 @@
             [value]="duration"></div>
     </div>
 
-    <div class="pnp-volume-container">
+    <div class="pnp-volume-container"
+        *ngIf="showVolume">
         <ngx-pnp-volume-slider [currentVolume]="currentVolume"
             (volumeChanged)="onVolumeChanged($event)">
         </ngx-pnp-volume-slider>
