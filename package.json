@@ -1,6 +1,6 @@
 {
     "name": "podnoms-player",
-    "version": "0.0.55",
+    "version": "0.0.59",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
