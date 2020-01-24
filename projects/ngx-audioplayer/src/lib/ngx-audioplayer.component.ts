@@ -137,6 +137,15 @@ export class NgxAudioplayerComponent implements AfterViewInit {
                 );
             });
         });
+
+        console.log(
+            'audio-player.component',
+            '_intialisePlayer\n',
+            `autoPlay: ${this.autoPlay}
+             showDetails: ${this.showDetails}
+             showDetails: ${this.showDetails}
+             showVolume: ${this.showVolume}\n`
+        );
     }
 
     private _createWavesurverEventHooks(wavesurfer: any) {
