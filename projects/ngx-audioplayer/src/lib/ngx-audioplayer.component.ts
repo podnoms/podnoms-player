@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { PlayState } from './data/playstates';
 import { NGXLogger } from 'ngx-logger';
+import { environment } from './environments/environment';
 
 declare var WaveSurfer: any;
 
@@ -41,7 +42,6 @@ export class NgxAudioplayerComponent implements AfterViewInit {
     @Input() title: string;
     @Input() target: string;
     @Input() subTitle: string;
-    @Input() autoPlay: boolean;
     @Input() padding: string;
     @Input() titleColour: string;
     @Input() subTitleColour: string;
@@ -52,9 +52,42 @@ export class NgxAudioplayerComponent implements AfterViewInit {
     @Input() barWidth: number = 2.3;
     @Input() barWidthScalingFactor: number = 128;
     @Input() reflectScale: number = 0.32;
-    @Input() showImage: boolean = true;
-    @Input() showDetails: boolean = true;
-    @Input() showVolume: boolean = true;
+
+    private _showImage = true;
+    @Input('showImage')
+    get showImage(): boolean {
+        return this._showImage;
+    }
+    set showImage(value: boolean) {
+        this._showImage = '' + value !== 'false';
+    }
+
+    private _showDetails = true;
+    @Input('showDetails')
+    get showDetails(): boolean {
+        return this._showDetails;
+    }
+    set showDetails(value: boolean) {
+        this._showDetails = '' + value !== 'false';
+    }
+
+    private _autoPlay = true;
+    @Input('autoPlay')
+    get autoPlay(): boolean {
+        return this._autoPlay;
+    }
+    set autoPlay(value: boolean) {
+        this._autoPlay = '' + value !== 'false';
+    }
+
+    private _showVolume = true;
+    @Input('showVolume')
+    get showVolume(): boolean {
+        return this._showVolume;
+    }
+    set showVolume(value: boolean) {
+        this._showVolume = '' + value !== 'false';
+    }
 
     @Output() audioStart: EventEmitter<any> = new EventEmitter<any>();
     @Output() connected: EventEmitter<any> = new EventEmitter<any>();
@@ -71,7 +104,7 @@ export class NgxAudioplayerComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this._intialisePlayer();
+        setTimeout(() => this._intialisePlayer());
     }
     stop() {
         if (this.wavesurfer) {
@@ -93,7 +126,6 @@ export class NgxAudioplayerComponent implements AfterViewInit {
         }
     }
     onVolumeChanged(volume: number) {
-        this.logger.debug('audio-player.component', 'onVolumeChanged', volume);
         this.currentVolume = volume;
         this.wavesurfer.setVolume(volume / 100);
         localStorage.setItem('pnp-player__currentvolume', volume.toString());
@@ -116,11 +148,7 @@ export class NgxAudioplayerComponent implements AfterViewInit {
                 waveColor: this._generateColourWithReflect(this.waveColour),
                 reflection: false,
                 error: (e: any) => {
-                    this.logger.error(
-                        'audio-player.component',
-                        'wave-error',
-                        e
-                    );
+                    console.log('audio-player.component', 'wave-error', e);
                 }
             });
             this.wavesurfer.setVolume(this.currentVolume / 100);
@@ -137,14 +165,13 @@ export class NgxAudioplayerComponent implements AfterViewInit {
                 );
             });
         });
-
         console.log(
             'audio-player.component',
             '_intialisePlayer\n',
             `autoPlay: ${this.autoPlay}
-             showDetails: ${this.showDetails}
-             showDetails: ${this.showDetails}
-             showVolume: ${this.showVolume}\n`
+                 showImage: ${this.showImage}
+                 showDetails: ${this.showDetails}
+                 showVolume: ${this.showVolume}\n`
         );
     }
 
@@ -156,42 +183,31 @@ export class NgxAudioplayerComponent implements AfterViewInit {
             this.audioProgress.emit(e);
         });
         wavesurfer.on('play', () => {
-            this.logger.debug('audio-player.component', 'play');
             this.audioStart.emit();
             this.audioplay.emit();
         });
         wavesurfer.on('ready', (e: any) => {
-            this.logger.debug('audio-player.component', 'play');
             this.duration = this.wavesurfer.getDuration();
             this.connected.emit();
-            this.logger.debug(
-                'ngx-audioplayer.component',
-                'autoplay',
-                this.autoPlay
-            );
             if (this.autoPlay) {
                 this.wavesurfer.play(); //.bind(this.wavesurfer);
                 this.playState = PlayState.Playing;
             }
         });
         wavesurfer.on('waveform-ready', () => {
-            this.logger.debug('audio-player.component', 'waveform-ready');
             this.duration = this.wavesurfer.getDuration();
             this.connected.emit();
         });
         wavesurfer.on('pause', (e: any) => {
-            this.logger.debug('audio-player.component', 'audiopause');
             this.audiopause.emit();
         });
         wavesurfer.on('finish', (e: any) => {
-            this.logger.debug('audio-player.component', 'audioend');
             this.audioend.emit();
         });
         wavesurfer.on('redraw', () => {
             this.logger.debug('audio-player.component', 'redraw');
         });
         wavesurfer.on('destroy', () => {
-            this.logger.debug('audio-player.component', 'destroy');
             this.destroy.emit();
         });
     }
