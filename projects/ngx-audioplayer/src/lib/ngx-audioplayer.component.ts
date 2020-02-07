@@ -161,7 +161,7 @@ export class NgxAudioplayerComponent implements AfterViewInit {
                 this.wavesurfer.load(
                     this.audioUrl,
                     this.wavesurfer.backend.peaks,
-                    'none'
+                    'false'
                 );
             });
         });
