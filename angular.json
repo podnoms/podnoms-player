@@ -15,7 +15,12 @@
                         "tsConfig": "projects/ngx-audioplayer/tsconfig.lib.json",
                         "project": "projects/ngx-audioplayer/ng-package.json"
                     }
-                },
+                ,          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-audioplayer/tsconfig.lib.prod.json"
+            }
+          }
+},
                 "test": {
                     "builder": "@angular-devkit/build-angular:karma",
                     "options": {
@@ -55,7 +60,7 @@
                         "main": "projects/ngx-audioplayer-test/src/main.ts",
                         "polyfills": "projects/ngx-audioplayer-test/src/polyfills.ts",
                         "tsConfig": "projects/ngx-audioplayer-test/tsconfig.app.json",
-                        "aot": false,
+                        "aot": true,
                         "assets": [
                             "projects/ngx-audioplayer-test/src/favicon.ico",
                             "projects/ngx-audioplayer-test/src/assets"
@@ -80,7 +85,6 @@
                             "sourceMap": false,
                             "extractCss": true,
                             "namedChunks": false,
-                            "aot": true,
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true,
