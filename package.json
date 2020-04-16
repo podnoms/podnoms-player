@@ -1,6 +1,7 @@
 {
     "name": "podnoms-player",
     "version": "1.2.2",
+    "license": "MIT",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
@@ -10,10 +11,10 @@
         "pnpbuild": "ng build ngx-audioplayer",
         "publish:pre": "npm --prefix projects/ngx-audioplayer/ version patch && git commit -am \"Version bump\" && npm version patch && git push",
         "publish:local": "npm --prefix projects/ngx-audioplayer/ version patch && npm --prefix projects/ngx-audioplayer/ version patch && ng build --prod ngx-audioplayer && cd dist/ngx-audioplayer && npm publish --access public --",
-        "publish:ci": "ng build ngx-audioplayer --prod && cd dist/ngx-audioplayer && npm publish --access public --",
+        "publish:ci": "ng build ngx-audioplayer --prod && cd dist/ngpwdx-audioplayer && npm publish --access public --",
         "servedemo": "ng build ngx-audioplayer && ng serve --port=4202 ngx-audioplayer-test"
     },
-    "private": true,
+    "private": false,
     "dependencies": {
         "@angular/animations": "~9.1.2",
         "@angular/common": "~9.1.2",
@@ -25,7 +26,6 @@
         "@angular/router": "~9.1.2",
         "ngx-logger": "^4.0.5",
         "rxjs": "~6.5.5",
-        "shaka-player": "^2.5.5",
         "tslib": "^1.10.0",
         "wavesurfer.js": "^3.3.1",
         "zone.js": "~0.10.3"
