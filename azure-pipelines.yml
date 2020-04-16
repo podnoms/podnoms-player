@@ -4,29 +4,24 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- develop
+    - develop
 
 pool:
-  vmImage: 'ubuntu-latest'
+    vmImage: "ubuntu-latest"
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+    - task: NodeTool@0
+      inputs:
+          versionSpec: "10.x"
+      displayName: "Install Node.js"
 
-- script: |
-    npm install -g @angular/cli
-    yarn install
-    ng build --prod ngx-audioplayer
-  displayName: 'install and build'
+    - script: |
+          npm install -g @angular/cli
+          yarn install
+          ng build --prod ngx-audioplayer
+      displayName: "install and build"
 
-- script: |
-    cd dist/ngx-audioplayer 
-    npm publish --access public --
-  displayName: 'publish'
-
-- task: Npm@1
-  inputs:
-    command: 'publish'
-    customEndpoint: 'NPM PUBLISH'
+    - task: Npm@1
+      inputs:
+          command: "publish"
+          customEndpoint: "NPM PUBLISH"
