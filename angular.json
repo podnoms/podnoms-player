@@ -117,22 +117,9 @@
                     "options": {
                         "tsConfig": [
                             "projects/ngx-audioplayer-test/tsconfig.app.json",
-                            "projects/ngx-audioplayer-test/tsconfig.spec.json",
-                            "projects/ngx-audioplayer-test/e2e/tsconfig.json"
+                            "projects/ngx-audioplayer-test/tsconfig.spec.json"
                         ],
                         "exclude": ["**/node_modules/**"]
-                    }
-                },
-                "e2e": {
-                    "builder": "@angular-devkit/build-angular:protractor",
-                    "options": {
-                        "protractorConfig": "projects/ngx-audioplayer-test/e2e/protractor.conf.js",
-                        "devServerTarget": "ngx-audioplayer-test:serve"
-                    },
-                    "configurations": {
-                        "production": {
-                            "devServerTarget": "ngx-audioplayer-test:serve:production"
-                        }
                     }
                 }
             }
