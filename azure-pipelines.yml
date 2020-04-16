@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+- develop
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -25,3 +25,8 @@ steps:
     cd dist/ngx-audioplayer 
     npm publish --access public --
   displayName: 'publish'
+
+- task: Npm@1
+  inputs:
+    command: 'publish'
+    customEndpoint: 'NPM PUBLISH'
