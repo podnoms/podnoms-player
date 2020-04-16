@@ -19,4 +19,9 @@ steps:
     npm install -g @angular/cli
     yarn install
     ng build --prod ngx-audioplayer
-  displayName: 'npm install and build'
+  displayName: 'install and build'
+
+- script: |
+    cd dist/ngx-audioplayer 
+    npm publish --access public --
+  displayName: 'publish'
