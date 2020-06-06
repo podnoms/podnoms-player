@@ -6,7 +6,7 @@ import {
     AfterViewInit,
     Input,
     Output,
-    EventEmitter
+    EventEmitter,
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -21,7 +21,7 @@ declare var WaveSurfer: any;
     selector: 'ngx-audioplayer',
     templateUrl: './ngx-audioplayer.component.html',
     styleUrls: ['./ngx-audioplayer.component.scss'],
-    encapsulation: ViewEncapsulation.ShadowDom
+    encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class NgxAudioplayerComponent implements AfterViewInit {
     public playState: PlayState = PlayState.Stopped;
@@ -149,13 +149,13 @@ export class NgxAudioplayerComponent implements AfterViewInit {
                 reflection: false,
                 error: (e: any) => {
                     console.log('audio-player.component', 'wave-error', e);
-                }
+                },
             });
             this.wavesurfer.setVolume(this.currentVolume / 100);
             this._createWavesurverEventHooks(this.wavesurfer);
-            this.httpClient.get<any>(this.pcmUrl).subscribe(r => {
+            this.httpClient.get<any>(this.pcmUrl).subscribe((r) => {
                 this.wavesurfer.backend.peaks = r.data.map(
-                    p => p / this.barWidthScalingFactor
+                    (p) => p / this.barWidthScalingFactor
                 );
                 this.wavesurfer.drawBuffer();
                 this.wavesurfer.load(
@@ -177,7 +177,7 @@ export class NgxAudioplayerComponent implements AfterViewInit {
 
     private _createWavesurverEventHooks(wavesurfer: any) {
         // will hook element events into wavesurfer events rather than handling manually
-        wavesurfer.on('audioprocess', e => {
+        wavesurfer.on('audioprocess', (e) => {
             // this.logger.debug('audio-player.component', 'audioprocess', e);
             this.currentPosition = e;
             this.audioProgress.emit(e);
@@ -289,7 +289,7 @@ export class NgxAudioplayerComponent implements AfterViewInit {
                 parseInt(color.substr(1, 2), 16),
                 parseInt(color.substr(3, 2), 16),
                 parseInt(color.substr(5, 2), 16),
-                color.length > 7 ? parseInt(color.substr(7, 2), 16) / 255 : 1
+                color.length > 7 ? parseInt(color.substr(7, 2), 16) / 255 : 1,
             ];
         }
         if (color.indexOf('rgb') === -1) {
@@ -316,7 +316,7 @@ export class NgxAudioplayerComponent implements AfterViewInit {
             if (color.indexOf('rgba') === -1) {
                 color += ',1';
             } // convert 'rgb(R,G,B)' to 'rgb(R,G,B)A' which looks awful but will pass the regxep below
-            return color.match(/[\.\d]+/g).map(function(a) {
+            return color.match(/[\.\d]+/g).map(function (a) {
                 return +a;
             });
         }
