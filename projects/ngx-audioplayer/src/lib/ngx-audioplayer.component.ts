@@ -71,7 +71,8 @@ export class NgxAudioplayerComponent implements AfterViewInit {
         this._showDetails = '' + value !== 'false';
     }
 
-    private _autoPlay = true;
+    // auto-play is evil m'kay!
+    private _autoPlay = false;
     @Input('autoPlay')
     get autoPlay(): boolean {
         return this._autoPlay;
@@ -148,7 +149,11 @@ export class NgxAudioplayerComponent implements AfterViewInit {
                 waveColor: this._generateColourWithReflect(this.waveColour),
                 reflection: false,
                 error: (e: any) => {
-                    console.log('audio-player.component', 'wave-error', e);
+                    this.logger.debug(
+                        'audio-player.component',
+                        'wave-error',
+                        e
+                    );
                 },
             });
             this.wavesurfer.setVolume(this.currentVolume / 100);
@@ -165,7 +170,7 @@ export class NgxAudioplayerComponent implements AfterViewInit {
                 );
             });
         });
-        console.log(
+        this.logger.debug(
             'audio-player.component',
             '_intialisePlayer\n',
             `autoPlay: ${this.autoPlay}
