@@ -99,9 +99,11 @@ export class NgxAudioplayerComponent implements AfterViewInit {
     @Output() destroy: EventEmitter<any> = new EventEmitter<any>();
 
     constructor(private httpClient: HttpClient, private logger: NGXLogger) {
-        this.currentVolume =
-            parseFloat(localStorage.getItem('pnp-player__currentvolume')) ||
-            this.currentVolume;
+        if (localStorage) {
+            this.currentVolume =
+                parseFloat(localStorage.getItem('pnp-player__currentvolume')) ||
+                this.currentVolume;
+        }
     }
 
     ngAfterViewInit() {
