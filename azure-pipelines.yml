@@ -23,6 +23,9 @@ steps:
 
     - task: Npm@1
       inputs:
-          customCommand: "publish dist/ngx-audioplayer"
-          customEndpoint: "NPMJS"
+        command: custom
+        verbose: false
+        customCommand: 'publish dist/ngx-audioplayer'
+        customEndpoint: NPMJS
+
       displayName: "Publish to NPMJS"
