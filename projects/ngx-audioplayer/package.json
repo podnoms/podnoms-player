@@ -1,6 +1,6 @@
 {
     "name": "@podnoms/ngx-audioplayer",
-    "version": "1.2.32",
+    "version": "1.2.33",
     "license": "MIT",
     "peerDependencies": {
         "@angular/common": "~9.1.2",
