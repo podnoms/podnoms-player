@@ -1,6 +1,6 @@
 {
     "name": "podnoms-player",
-    "version": "1.2.9",
+    "version": "1.2.7",
     "license": "MIT",
     "scripts": {
         "ng": "ng",
@@ -12,7 +12,7 @@
         "publish:pre": "npm --prefix projects/ngx-audioplayer/ version patch && git commit -am \"Version bump\" && npm version patch && git push",
         "publish:local": "npm --prefix projects/ngx-audioplayer/ version patch && npm --prefix projects/ngx-audioplayer/ version patch && ng build --prod ngx-audioplayer && cd dist/ngx-audioplayer && npm publish --access public --",
         "publish:ci": "ng build ngx-audioplayer --prod && cd dist/ngx-audioplayer && npm publish --access public --",
-        "publish:prod": "ng build ngx-audioplayer --prod",
+        "build:publish": "ng build ngx-audioplayer --prod",
         "servedemo": "ng build ngx-audioplayer && ng serve --port=4202 ngx-audioplayer-test"
     },
     "private": false,
