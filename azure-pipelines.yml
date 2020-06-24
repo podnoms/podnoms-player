@@ -1,6 +1,5 @@
 trigger:
     - trunk
-    - develop
 
 pool:
     vmImage: "ubuntu-latest"
@@ -23,5 +22,4 @@ steps:
           verbose: false
           customCommand: "publish dist/ngx-audioplayer"
           customEndpoint: NPMJS
-
       displayName: "Publish to NPMJS"
