@@ -9,7 +9,7 @@
         "test": "ng test",
         "lint": "ng lint",
         "pnpbuild": "ng build ngx-audioplayer",
-        "publish:pre": "npm --prefix projects/ngx-audioplayer/ version patch && git commit -am \"Version bump\" && npm version patch && git push",
+        "publish:pre": "npm --prefix projects/ngx-audioplayer/ version patch && git commit -am \"Version bump\" && git push",
         "publish:local": "npm --prefix projects/ngx-audioplayer/ version patch && npm --prefix projects/ngx-audioplayer/ version patch && ng build --prod ngx-audioplayer && cd dist/ngx-audioplayer && npm publish --access public --",
         "publish:ci": "ng build ngx-audioplayer --prod && cd dist/ngx-audioplayer && npm publish --access public --",
         "build:publish": "ng build ngx-audioplayer --prod",
