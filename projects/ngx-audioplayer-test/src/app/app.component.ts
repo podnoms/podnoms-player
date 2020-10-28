@@ -4,7 +4,7 @@ import { NgxAudioplayerComponent } from 'projects/ngx-audioplayer/src/public-api
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss']
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
     @ViewChild('player', { static: true })

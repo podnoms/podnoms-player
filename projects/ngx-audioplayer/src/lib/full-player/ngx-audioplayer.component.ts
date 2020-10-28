@@ -10,9 +10,8 @@ import {
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { PlayState } from './data/playstates';
+import { PlayState } from '../constants/playstates';
 import { NGXLogger } from 'ngx-logger';
-import { environment } from './environments/environment';
 
 declare var WaveSurfer: any;
 
