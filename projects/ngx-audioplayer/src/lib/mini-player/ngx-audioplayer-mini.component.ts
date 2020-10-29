@@ -22,9 +22,11 @@ export class NgxAudioplayerMiniComponent implements AfterViewInit {
     @Input() audioUrl: string;
     @Input() allowDownload: boolean = false;
     @Input() allowShare: boolean = false;
-
+    @Input() audioLength: number;
     constructor(private logger: NGXLogger) {}
     ngAfterViewInit(): void {
+        this.totalTime = this.audioLength ?? 0;
+
         this._player = new Howl({
             src: [this.audioUrl],
             format: ['mp3'],
