@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PlayState } from '../../data/playstates';
+import { PlayState } from '../../../constants/playstates';
 
 @Component({
     selector: 'ngx-pnp-play-button',

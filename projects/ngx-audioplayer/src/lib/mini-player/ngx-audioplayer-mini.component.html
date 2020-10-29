@@ -1,0 +1,104 @@
+<div class="player-wrapper">
+    <div class="player-section controls">
+        <app-play-button-image *ngIf="playState===PlayState.Paused || playState===PlayState.Stopped"
+            (click)="changePlayState()">
+        </app-play-button-image>
+        <app-pause-button-image *ngIf="playState===PlayState.Playing"
+            (click)="changePlayState()">
+        </app-pause-button-image>
+    </div>
+    <div class="player-section seek">
+        <div class="d-flex flex-row">
+            <div class="">
+                <div class="jp-time jp-current-time"
+                    role="timer"
+                    aria-label="time">{{currentTime | formatTime}}
+                </div>
+            </div>
+            <div class="p-2 flex-grow-1">
+                <div class="jp-progress">
+                    <div class="jp-seek-bar"
+                        style="width: 100%;"
+                        (click)="seekAudio($event)">
+                        <div class="jp-play-bar"
+                            [style.width.%]="percentagePlayed">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="jp-time jp-total-time ml-auto"
+                    role="timer"
+                    aria-label="duration">{{totalTime | formatTime}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="player-section volume d-flex flex-row">
+        <div class="jp-mute-wrapper"
+            (click)="toggleMute()">
+            <app-mute-button-image [opacity]="isMuted ? 0.3 : 1"></app-mute-button-image>
+        </div>
+        <div class="jp-volume-bar flex-grow-1"
+            (click)="setVolume($event)">
+            <div class="jp-volume-bar-value"
+                [style.width.%]="isMuted ? 0 : currentVolume"></div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="track__option"
+    *ngIf="audioUrl">
+    <div class="jp-audio jp_container-1"
+        role="application"
+        aria-label="media player">
+        <div class="jp-gui jp-interface">
+            <div class="player_controls_box">
+                <app-play-button-image *ngIf="playState===PlayState.Paused || playState===PlayState.Stopped"
+                    (click)="changePlayState()">
+                </app-play-button-image>
+                <app-pause-button-image *ngIf="
+                    playState===PlayState.Playing"
+                    (click)="changePlayState()">
+                </app-pause-button-image>
+            </div>
+            <div class="player_bars">
+                <div class="jp-progress">
+                    <div class="jp-seek-bar"
+                        style="width: 100%;"
+                        (click)="seekAudio($event)">
+                        <div class="jp-play-bar"
+                            [style.width.%]="percentagePlayed">
+                        </div>
+                    </div>
+                </div>
+                <div class="jp-current-time"
+                    role="timer"
+                    aria-label="time">00:00
+                </div>
+                <div class="jp-duration ml-auto"
+                    role="timer"
+                    aria-label="duration">03:10</div>
+            </div>
+            <div class="jp-volume-controls">
+                <button class="jp-mute"
+                    tabindex="0">
+                    <span class="icon_volume-high"></span>
+                </button>
+                <div class="jp-volume-bar">
+                    <div class="jp-volume-bar-value"
+                        style="width: 80%;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="jp-btns">
+            <a href="#"
+                *ngIf="allowShare">
+                <i class="social_share"></i> Share
+            </a>
+            <a href="#"
+                *ngIf="allowDownload">
+                <i class="fa fa-download"></i> Download
+            </a>
+        </div>
+    </div>
+</div> -->
