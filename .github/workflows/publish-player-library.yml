@@ -30,9 +30,9 @@ jobs:
       - run: npm install -g @angular/cli
       - run: npm install
       - run: ng build ngx-audioplayer --prod
+
       - uses: JS-DevTools/npm-publish@v1
         with:
-          access: public
-          package: ./dist/ngx-audioplayer
+          package: dist/ngx-audioplayer
           token: ${{ secrets.NPM_TOKEN }}
 
