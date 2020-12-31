@@ -33,6 +33,6 @@ jobs:
       - uses: mxschmitt/action-tmate@v3
       - uses: JS-DevTools/npm-publish@v1
         with:
-          package: dist/ngx-audioplayer
+          package: /home/runner/work/podnoms-player/podnoms-player/dist/ngx-audioplayer
           token: ${{ secrets.NPM_TOKEN }}
 
