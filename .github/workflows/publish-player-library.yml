@@ -28,12 +28,11 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 15
-          registry-url: https://registry.npmjs.org/
+          registry-url: https://registry.npmjs.org/:_authToken=${secrets.NPM_TOKEN}
       - run: npm install -g @angular/cli
+      - run: npm install
       - run: ng build ngx-audioplayer --prod
-      - run: npm publish dist/ngx-audioplayer --access public --
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: NPM_TOKEN=${{secrets.NPM_TOKEN}}  npm publish dist/ngx-audioplayer --access public --
 
   publish-gpr:
     needs: build
@@ -45,7 +44,6 @@ jobs:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
       - run: npm install -g @angular/cli
+      - run: npm install
       - run: ng build ngx-audioplayer --prod
-      - run: npm publish dist/ngx-audioplayer --access public --
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - run: NPM_TOKEN=${{secrets.NPM_TOKEN}}  npm publish dist/ngx-audioplayer --access public --
