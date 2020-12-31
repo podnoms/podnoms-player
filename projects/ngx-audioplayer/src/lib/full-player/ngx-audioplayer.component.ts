@@ -108,12 +108,12 @@ export class NgxAudioplayerComponent implements AfterViewInit {
     ngAfterViewInit() {
         setTimeout(() => this._intialisePlayer());
     }
-    stop() {
+    public stop() {
         if (this.wavesurfer) {
             this.wavesurfer.destroy();
         }
     }
-    play() {
+    public play() {
         if (this.wavesurfer) {
             if (
                 this.playState === PlayState.Paused ||
