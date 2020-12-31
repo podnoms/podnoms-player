@@ -12,7 +12,9 @@
             <div class="">
                 <div class="jp-time jp-current-time"
                     role="timer"
-                    aria-label="time">{{currentTime | formatTime}}
+                    aria-label="time">
+
+                    {{currentTime === 0 ? '0:00:00' : (currentTime | formatTime)}}
                 </div>
             </div>
             <div class="p-2 flex-grow-1">
@@ -28,8 +30,10 @@
             </div>
             <div class="">
                 <div class="jp-time jp-total-time ml-auto"
+                    *ngIf="audioLength"
                     role="timer"
-                    aria-label="duration">{{totalTime | formatTime}}</div>
+                    aria-label="duration">
+                    {{audioLength ?  (audioLength | formatTime) : '0:00:00'}}</div>
             </div>
         </div>
     </div>

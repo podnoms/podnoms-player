@@ -17,7 +17,6 @@ export class NgxAudioplayerMiniComponent implements AfterViewInit {
     currentVolume = 75;
     percentagePlayed = 0;
     currentTime = 0;
-    totalTime = 0;
 
     @Input() audioUrl: string;
     @Input() allowDownload: boolean = false;
@@ -25,7 +24,6 @@ export class NgxAudioplayerMiniComponent implements AfterViewInit {
     @Input() audioLength: number;
     constructor(private logger: NGXLogger) {}
     ngAfterViewInit(): void {
-        this.totalTime = this.audioLength ?? 0;
 
         this._player = new Howl({
             src: [this.audioUrl],
@@ -36,7 +34,7 @@ export class NgxAudioplayerMiniComponent implements AfterViewInit {
         });
         this._player.on('play', () => {
             this.playState = PlayState.Playing;
-            this.totalTime = this._player.duration();
+            this.audioLength = this._player.duration();
             requestAnimationFrame(this._updatePosition.bind(this));
         });
         this._player.on('pause', () => {
