@@ -24,31 +24,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-    #   - name: Setup tmate session
-    #     uses: mxschmitt/action-tmate@v3
       - uses: actions/setup-node@v1
         with:
-          node-version: 15
-          registry-url: https://registry.npmjs.org/
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+          node-version: 10
       - run: npm install -g @angular/cli
       - run: npm install
       - run: ng build ngx-audioplayer --prod
-      - run: NPM_TOKEN=${{secrets.NPM_TOKEN}} npm publish dist/ngx-audioplayer --access public --
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          access: public
+          package: ./dist/ngx-audioplayer
+          token: ${{ secrets.NPM_TOKEN }}
 
-  publish-gpr:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 15
-          registry-url: https://npm.pkg.github.com/
-      - run: npm install -g @angular/cli
-      - run: npm install
-      - run: ng build ngx-audioplayer --prod
-      - run: NPM_TOKEN=${{secrets.NPM_TOKEN}}  npm publish dist/ngx-audioplayer --access public --
