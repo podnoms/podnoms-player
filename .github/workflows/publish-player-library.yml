@@ -30,8 +30,8 @@ jobs:
       - run: npm install -g @angular/cli
       - run: npm install
       - run: ng build ngx-audioplayer --prod
-      - uses: mxschmitt/action-tmate@v3
       - uses: JS-DevTools/npm-publish@v1
+      - uses: mxschmitt/action-tmate@v3
         with:
           package: /home/runner/work/podnoms-player/podnoms-player/dist/ngx-audioplayer
           token: ${{ secrets.NPM_TOKEN }}
