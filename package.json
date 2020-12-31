@@ -1,6 +1,6 @@
 {
   "name": "podnoms-player",
-  "version": "1.4.14",
+  "version": "1.4.15",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
