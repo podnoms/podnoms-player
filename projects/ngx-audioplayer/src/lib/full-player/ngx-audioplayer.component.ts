@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { PlayState } from '../constants/playstates';
 import { NGXLogger } from 'ngx-logger';
+import { textChangeRangeIsUnchanged } from 'typescript';
 
 declare var WaveSurfer: any;
 
@@ -89,6 +90,8 @@ export class NgxAudioplayerComponent implements AfterViewInit {
         this._showVolume = '' + value !== 'false';
     }
 
+    @Output()
+    playStateChanged: EventEmitter<number> = new EventEmitter<number>();
     @Output() audioStart: EventEmitter<any> = new EventEmitter<any>();
     @Output() connected: EventEmitter<any> = new EventEmitter<any>();
     @Output() audioplay: EventEmitter<any> = new EventEmitter<any>();
@@ -124,6 +127,9 @@ export class NgxAudioplayerComponent implements AfterViewInit {
             } else {
                 this.wavesurfer.pause();
                 this.playState = PlayState.Paused;
+            }
+            if (this.playStateChanged) {
+                this.playStateChanged.emit(this.playState);
             }
         }
     }
@@ -198,6 +204,9 @@ export class NgxAudioplayerComponent implements AfterViewInit {
             if (this.autoPlay) {
                 this.wavesurfer.play(); //.bind(this.wavesurfer);
                 this.playState = PlayState.Playing;
+                if (this.playStateChanged) {
+                    this.playStateChanged.emit(this.playState);
+                }
             }
         });
         wavesurfer.on('waveform-ready', () => {
