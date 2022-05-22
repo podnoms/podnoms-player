@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { PlayState } from '../constants/playstates';
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 
 @Component({
     selector: 'ngx-audioplayer-mini',
@@ -24,7 +24,6 @@ export class NgxAudioplayerMiniComponent implements AfterViewInit {
     @Input() audioLength: number;
     constructor(private logger: NGXLogger) {}
     ngAfterViewInit(): void {
-
         this._player = new Howl({
             src: [this.audioUrl],
             format: ['mp3'],
