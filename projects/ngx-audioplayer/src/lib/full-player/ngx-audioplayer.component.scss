@@ -2,7 +2,9 @@ html {
     --lh: 1.4rem;
     line-height: var(--lh);
 }
-
+wave {
+    overflow: hidden !important;
+}
 .pnp-grid-container {
     display: flex;
     height: 100%;
