@@ -1,6 +1,6 @@
 {
     "name": "@podnoms/ngx-audioplayer",
-    "version": "1.5.6",
+    "version": "1.5.9",
     "license": "MIT",
     "dependencies": {
         "tslib": "^2.0.0"
