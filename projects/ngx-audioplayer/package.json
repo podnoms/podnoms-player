@@ -1,9 +1,9 @@
 {
     "name": "@podnoms/ngx-audioplayer",
-    "version": "1.4.21",
+    "version": "1.4.23",
     "license": "MIT",
     "dependencies": {
-      "tslib": "^2.0.0"
+        "tslib": "^2.0.0"
     },
     "peerDependencies": {
         "@angular/common": "~10.2.0",
