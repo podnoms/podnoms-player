@@ -1,13 +1,13 @@
 {
     "name": "@podnoms/ngx-audioplayer",
-    "version": "1.4.26",
+    "version": "1.5.3",
     "license": "MIT",
     "dependencies": {
         "tslib": "^2.0.0"
     },
     "peerDependencies": {
-        "@angular/common": "~10.2.0",
-        "@angular/core": "~10.2.0",
-        "ngx-logger": "^4.0.5"
+        "@angular/common": "~13.3.9",
+        "@angular/core": "~13.3.9",
+        "ngx-logger": "^5.0.9"
     }
 }
